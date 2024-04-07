@@ -1,0 +1,16 @@
+if SHIELD_MAIZELESS_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "Maizeless"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if SHIELD_MAIZELESS_LEFT || SHIELD_MAIZELESS_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+endif

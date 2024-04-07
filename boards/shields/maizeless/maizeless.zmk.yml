@@ -1,0 +1,11 @@
+file_format: "1"
+id: maizeless
+name: Maizeless
+type: shield
+url: https://github.com/bluedrink9/maizeless/
+requires: [nice_nano_v2]
+features:
+  - keys
+siblings:
+  - maizeless_left
+  - maizeless_right

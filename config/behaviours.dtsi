@@ -1,0 +1,13 @@
+#include <dt-bindings/zmk/keys.h>
+
+/ {
+    behaviors {
+        td: tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp TD_SNAKE_CASE>;
+        };
+    };
+};
