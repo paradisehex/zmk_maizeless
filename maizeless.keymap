@@ -68,7 +68,7 @@
             bindings = <
 // &trans          &to L_QWERTY  &to L_COLEMAK  &trans         &trans         &kp SLEP        &bootloader  &trans  &trans  &trans  &kp PSCRN  &sys_reset
 &kp ESC         &trans        &kp HOME       &kp UP       &kp END        &bootloader     &bootloader  &kp HOME &kp UP   &kp END  &trans    &tog L_SPECIAL
-&CLCK           &trans        &kp LEFT       &kp DOWN     &kp RIGHT      &kp PG_UP       &kp PG_UP    &kp LEFT &kp DOWN &kp RIGHT &trans   &sl L_SYSTEM
+&kp CLCK        &trans        &kp LEFT       &kp DOWN     &kp RIGHT      &kp PG_UP       &kp PG_UP    &kp LEFT &kp DOWN &kp RIGHT &trans   &sl L_SYSTEM
 &sys_reset      &trans        &mkp RCLK      &mkp MCLK    &mkp LCLK      &kp PG_DN       &kp PG_DN    &kp RALT &kp RGUI &kp RCTRL &trans   &sys_reset 
                                              &trans       &trans         &trans          &trans       &trans   &trans
                                             // &ht C_VOL_DN C_MUTE   &kp C_VOL_UP

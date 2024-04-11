@@ -21,6 +21,16 @@ build_right:
 
 build_reset:
 
+layer_drawing = maizeless_keymap.mine.pdf
+# Draw layers using keymap-drawer
+draw: $(layer_drawing)
+
+$(layer_drawing): keymap_drawer.yaml
+	keymap draw --qmk-keyboard corne_rotated $< >| $@.svg
+	inkscape --export-pdf=$@ $@.svg
+
+keymap_drawer.yaml: maizeless.keymap
+	keymap parse -c 10 -z $< >| $@
 	
 flash_left:
 	cp $(zmk_src_dir)/app/build/left/zephyr/zmk.uf2 $(mount_path)
