@@ -71,8 +71,8 @@
 &tog L_SPECIAL  &trans        &kp LEFT       &kp DOWN     &kp RIGHT      &kp PG_UP       &kp PG_UP    &kp LEFT &kp DOWN &kp RIGHT &trans    &trans
 &sys_reset      &trans        &mkp RCLK      &mkp MCLK    &mkp LCLK      &kp PG_DN       &kp PG_DN    &kp RALT &kp RGUI &kp RCTRL &trans   &sys_reset 
                                              &trans       &trans         &trans          &trans       &trans   &trans
-                                            // &kp C_VOL_DN   &kp C_VOL_UP
-                                            // &kp C_PREV     &kp C_PP
+                                            // &ht C_VOL_DN C_MUTE   &kp C_VOL_UP
+                                            // &kp C_PREV     &kp C_PP C_NEXT
             >;
         };
 
@@ -88,10 +88,10 @@
         l_vim {
     bindings = <
 // &sl LAYER_LOCK &kp DM_RSTP &kp DM_PLY1 &kp DM_PLY2 &kp END &trans        &trans  &trans     &trans     &trans     &kp HOME &trans
-// &tog L_VIM    &trans      &kp LC(RIGHT) &kp LC(V)    &kp END &td TD_VIM_GG  &kp DOWN &kp RIGHT &kp LC(Z)  &kp LC(C)  &kp HOME   &tog L_VIM 
-&trans        &kp END     &kp BSPC      &trans    &trans    &kp LC(X)      &kp LEFT &trans    &kp LC(RIGHT) &tog L_VIM &newline_after &trans
-&mo L_SFT_VIM &trans      &kp DEL       &kp LC(X) &tog L_VIM_VIS &kp LC(LEFT) &kp UP &trans &trans &trans &kp LC(E) &mo L_SFT_VIM
-                                          &trans     &trans    &mo L_SFT_VIM   &trans   &trans    &trans
+&tog L_VIM    &trans      &kp LC(RIGHT) &trans     &kp LC(V)      &td_vim_gg      &kp DOWN        &kp RIGHT  &kp LC(Z)     &kp LC(C)     &kp HOME       &tog L_VIM
+&trans        &kp END     &kp BSPC      &trans     &trans         &kp LC(X)       &kp LEFT        &trans     &kp LC(RIGHT) &tog L_VIM    &newline_after &trans
+&mo L_SFT_VIM &trans      &kp DEL       &kp LC(X)  &tog L_VIM_VIS &kp LC(LEFT)    &kp UP          &trans     &trans        &trans        &kp LC(E)      &mo L_SFT_VIM
+                                        &trans     &trans         &mo L_SFT_VIM   &trans          &trans     &trans
             >;
         };
 
@@ -108,7 +108,7 @@
         l_vim_vis {
                         bindings = <
 // &tog L_VIM_VIS &trans  &trans  &trans  &kp LS(END) &trans        &kp LS(HOME) &trans  &trans  &trans  &kp LS(HOME) &trans
-// &tog L_VIM_VIS          &trans  &kp LC(LS(RIGHT)) &trans  &kp PASTE_REPLACE &td TD_BOF_EOF   &kp LS(DOWN) &kp LS(RIGHT) &kp LC(Z) &kp LC(C) &trans  &trans
+&tog L_VIM_VIS  &trans  &kp LC(LS(RIGHT)) &trans  &paste_replace    &kp LS(LC(END))  &kp LS(DOWN) &kp LS(RIGHT) &kp LC(Z)         &kp LC(C) &trans  &trans
 &trans          &trans  &trans            &trans  &trans            &kp LC(X)        &kp LS(LEFT) &trans        &kp LC(LS(RIGHT)) &trans  &trans  &trans
 &trans          &trans  &kp BSPC          &trans  &tog L_VIM_VIS    &kp LC(LS(LEFT)) &kp LS(UP)   &trans        &kp LS(TAB)       &kp TAB &trans  &trans
                                           &trans  &trans  &trans        &trans   &trans  &trans
@@ -168,5 +168,14 @@
             bindings = <&kp DEL &kp LC(V)>;
         };
 
+    };
+
+    behaviors {
+        td_vim_gg: tap_dance_vim_gg {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&none>, <&kp LC(HOME)>;
+        };
     };
 };
