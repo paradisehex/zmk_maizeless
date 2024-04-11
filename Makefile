@@ -20,6 +20,11 @@ build_right:
 		west build --pristine -d build/right -b $(board) -- -DSHIELD=$(shield)_right -DZMK_CONFIG="$(mkfile_dir)"
 
 build_reset:
+	cd $(zmk_src_dir)/app && \
+		west build --pristine -b $(board) -- -DSHIELD=settings_reset
+
+flash_reset:
+	cp $(zmk_src_dir)/app/build/zephyr/zmk.uf2 $(mount_path)
 
 layer_drawing = maizeless_keymap.mine.pdf
 # Draw layers using keymap-drawer
