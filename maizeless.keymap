@@ -27,10 +27,10 @@
         l_qwerty {
             bindings = <
 // &kp GRAVE  &kp N1  &kp N2  &kp N3  &kp N4  &lt L_SPECIAL N5        &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &lt L_SPECIAL EQUAL
-&kp TAB         &kp Q       &kp W          &lt L_SPECIAL E  &kp R       &kp T         &kp Y   &kp U       &lt L_SPECIAL I      &kp O           &kp P           &kp UNDER
-&kp BSPC        &kp A       &mt LCTRL S    &mt LGUI D       &mt LALT F  &kp G         &kp H   &mt RALT J  &mt RGUI K           &mt RCTRL L     &kp SEMI        &kp APOS
-&mt LSHFT LBKT  &mt LCTRL Z  &lt L_NUMS X  &lt L_SPECIAL C  &lt L_VIM V &mt LALT B    &kp N   &lt L_VIM M &lt L_SPECIAL COMMA  &lt L_NUMS DOT  &mt RCTRL SLASH  &mt RSHFT RBKT
-                                           &tog L_NUMS      &kp SPACE   &kp BSPC      &tog L_SPECIAL &kp RSHFT &kp RET
+&kp TAB         &kp Q       &kp W          &hrl L_SPECIAL E &kp R       &kp T         &kp Y   &kp U       &hrl L_SPECIAL I      &kp O           &kp P           &kp UNDER
+&kp BSPC        &kp A       &hrm LCTRL S   &hrm LGUI D      &hrm LALT F &kp G         &kp H   &hrm RALT J  &hrm RGUI K           &hrm RCTRL L     &kp SEMI        &kp APOS
+&mt LSHFT LBKT  &mt LCTRL Z &hrl L_NUMS X  &kp C            &lt L_VIM V &mt LALT B    &kp N   &lt L_VIM M &kp COMMA  &hrl L_NUMS DOT  &mt RCTRL SLASH  &mt RSHFT RBKT
+                                           &kp DEL          &kp SPACE   &kp BSPC      &kp ESC &kp RSHFT   &kp RET
             >;
         };
 
@@ -171,6 +171,26 @@
     };
 
     behaviors {
+        hrm: home_row_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <165>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        hrl: home_row_layers {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <165>;
+            bindings = <&kp>, <&mo>;
+        };
+
         td_vim_gg: tap_dance_vim_gg {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
