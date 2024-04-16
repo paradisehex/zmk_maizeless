@@ -108,7 +108,7 @@
         l_vim_vis {
                         bindings = <
 // &tog L_VIM_VIS &trans  &trans  &trans  &kp LS(END) &trans        &kp LS(HOME) &trans  &trans  &trans  &kp LS(HOME) &trans
-&tog L_VIM_VIS  &trans  &kp LC(LS(RIGHT)) &trans  &LS(END)         &kp LS(LC(END))  &kp LS(DOWN) &kp LS(RIGHT) &kp LC(Z)         &kp LC(C) &trans  &trans
+&tog L_VIM_VIS  &trans  &kp LC(LS(RIGHT)) &trans  &kp LS(END)          &kp LS(LC(END))  &kp LS(DOWN) &kp LS(RIGHT) &kp LC(Z)         &kp LC(C) &trans  &trans
 &trans          &trans  &trans            &trans  &trans            &kp LC(X)        &kp LS(LEFT) &trans        &kp LC(LS(RIGHT)) &trans  &trans  &trans
 &trans          &trans  &kp BSPC          &trans  &tog L_VIM_VIS    &kp LC(LS(LEFT)) &kp LS(UP)   &trans        &kp LS(TAB)       &kp TAB &trans  &trans
                                           &trans  &trans  &trans        &trans   &trans  &trans
