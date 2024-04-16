@@ -8,8 +8,13 @@ mount_path=/run/media/$(USER)/NICENANO/
 
 build:
 	cd $(zmk_src_dir)/app && \
-		west build --pristine -d build/left -b $(board) -- -DSHIELD=$(shield)_left -DZMK_CONFIG="$(mkfile_dir)" && \
-		west build -d build/right -b $(board) -- -DSHIELD=$(shield)_right -DZMK_CONFIG="$(mkfile_dir)"
+		west build -d build/left -b $(board) && \
+		west build -d build/right -b $(board)
+
+build_fresh:
+	cd $(zmk_src_dir)/app && \
+		west build -d --pristine build/left -b $(board) -- -DSHIELD=$(shield)_left -DZMK_CONFIG="$(mkfile_dir)" && \
+		west build -d --pristine build/right -b $(board) -- -DSHIELD=$(shield)_right -DZMK_CONFIG="$(mkfile_dir)"
 
 build_left:
 	cd $(zmk_src_dir)/app && \
@@ -21,7 +26,7 @@ build_right:
 
 build_reset:
 	cd $(zmk_src_dir)/app && \
-		west build --pristine -b $(board) -- -DSHIELD=settings_reset
+		west build --pristine -d build/settings_reset -b $(board) -- -DSHIELD=settings_reset
 
 flash_reset:
 	cp $(zmk_src_dir)/app/build/zephyr/zmk.uf2 $(mount_path)
