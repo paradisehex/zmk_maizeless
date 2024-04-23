@@ -3,30 +3,54 @@ board=nice_nano_v2
 shield=maizeless
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 mkfile_dir := $(dir $(mkfile_path))
+external_modules := "$(zmk_src_dir)/modules/zmk_num_word"
+external_modules := $(foreach module,$(external_modules),-ZMK_EXTRA_MODULES $(module))
 
 mount_path=/run/media/$(USER)/NICENANO/
 
+.PHONY: build build_fresh build_left build_right build_reset
+
+# Define functions to call west build with common parameters
+define west_build
+	cd $(zmk_src_dir)/app && \
+		west build $(1) $(2) $(3) $(4) $(5) $(6) $(7) $(8) $(9) $(10) $(11) $(12) $(13) $(14) $(15) $(16) $(17) $(18) $(19) $(20)
+
+endef
+
+# $(1) = side
+# $(2) = extra west arg
+# $(3) = extra west arg
+define west_build_main
+	$(call west_build,-d,build/$(1),-b,$(board),$(2),$(3),--,
+		-DSHIELD=$(shield)_$(1),-DZMK_CONFIG="$(mkfile_dir)",$(external_modules))
+endef
+
+define west_build_simple
+	$(call west_build,-d,build/$(1),-b,$(board))
+endef
+
+	# cd $(zmk_src_dir)/app && \
+	# 	west build -d build/left -b $(board) && \
+	# 	west build -d build/right -b $(board)
+
+# Default build target for both left and right
 build:
-	cd $(zmk_src_dir)/app && \
-		west build -d build/left -b $(board) && \
-		west build -d build/right -b $(board)
+	$(call west_build_simple,left)
+	$(call west_build_simple,right)
 
-build_fresh:
-	cd $(zmk_src_dir)/app && \
-		west build -d --pristine build/left -b $(board) -- -DSHIELD=$(shield)_left -DZMK_CONFIG="$(mkfile_dir)" && \
-		west build -d --pristine build/right -b $(board) -- -DSHIELD=$(shield)_right -DZMK_CONFIG="$(mkfile_dir)"
-
+# Build only one side
 build_left:
-	cd $(zmk_src_dir)/app && \
-		west build --pristine -d build/left -b $(board) -- -DSHIELD=$(shield)_left -DZMK_CONFIG="$(mkfile_dir)"
-
+	$(call west_build_main,left)
 build_right:
-	cd $(zmk_src_dir)/app && \
-		west build --pristine -d build/right -b $(board) -- -DSHIELD=$(shield)_right -DZMK_CONFIG="$(mkfile_dir)"
+	$(call west_build_main,right)
+
+# Build with --pristine for both left and right
+build_fresh:
+	$(call west_build_main,left,--pristine)
+	$(call west_build_main,right,--pristine)
 
 build_reset:
-	cd $(zmk_src_dir)/app && \
-		west build --pristine -d build/settings_reset -b $(board) -- -DSHIELD=settings_reset
+	$(call west_build,--pristine,-d,build/settings_reset,-b,$(board),--,-DSHIELD=settings_reset)
 
 flash_reset:
 	cp $(zmk_src_dir)/app/build/zephyr/zmk.uf2 $(mount_path)
