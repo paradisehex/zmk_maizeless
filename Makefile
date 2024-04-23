@@ -3,8 +3,11 @@ board=nice_nano_v2
 shield=maizeless
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 mkfile_dir := $(dir $(mkfile_path))
-external_modules := "$(zmk_src_dir)/modules/zmk_num_word"
-external_modules := $(foreach module,$(external_modules),-ZMK_EXTRA_MODULES $(module))
+external_modules_list := "$(zmk_src_dir)/modules/zmk-num-word"
+EMPTY :=
+SPACE := $(EMPTY) $(EMPTY)
+COMMA := ,
+external_modules = $(subst $(SPACE),$(COMMA),$(external_modules_list))
 
 mount_path=/run/media/$(USER)/NICENANO/
 
@@ -21,8 +24,8 @@ endef
 # $(2) = extra west arg
 # $(3) = extra west arg
 define west_build_main
-	$(call west_build,-d,build/$(1),-b,$(board),$(2),$(3),--,
-		-DSHIELD=$(shield)_$(1),-DZMK_CONFIG="$(mkfile_dir)",$(external_modules))
+	$(call west_build,-d,build/$(1),-b,$(board),$(2),$(3),--,\
+		-DSHIELD=$(shield)_$(1),-DZMK_CONFIG="$(mkfile_dir)",-DZMK_EXTRA_MODULES=$(external_modules))
 endef
 
 define west_build_simple
