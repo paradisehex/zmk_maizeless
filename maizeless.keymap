@@ -9,6 +9,8 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/mouse.h>
+// From dhruvinsh
+#include <behaviors/num_word.dtsi>
 
 #define L_QWERTY  0
 #define L_COLEMAK 1
@@ -30,7 +32,7 @@
 &kp TAB         &kp Q        &kp W         &lt L_SPECIAL E  &kp R       &kp T          &kp Y   &kp U       &lt L_SPECIAL I &kp O           &kp P            &kp MINUS
 &kp BSPC        &kp A        &hrm LCTRL S  &hrm LGUI D      &hrm LALT F &kp G          &kp H   &hrm RALT J &hrm RGUI K     &hrm RCTRL L    &kp SEMI         &kp APOS
 &mt LSHFT LBKT  &hrm LCTRL Z &lt L_NUMS X  &kp C            &lt L_VIM V &hrm LALT B    &kp N   &lt L_VIM M &kp COMMA       &lt L_NUMS DOT  &hrm RCTRL SLASH &mt RSHFT RBKT
-                                           &kp DEL          &kp SPACE   &kp BSPC       &kp ESC &kp RSHFT   &kp RET
+                                           &num_word        &kp SPACE   &kp DEL        &gresc  &kp RSHFT   &kp RET
             >;
         };
 
@@ -68,7 +70,7 @@
             bindings = <
 // &trans          &to L_QWERTY  &to L_COLEMAK  &trans         &trans         &kp SLEP        &bootloader  &trans  &trans  &trans  &kp PSCRN  &sys_reset
 &kp ESC         &trans        &kp HOME       &kp UP       &kp END        &bootloader     &bootloader  &kp HOME &kp UP   &kp END  &trans    &tog L_SPECIAL
-&kp CLCK        &trans        &kp LEFT       &kp DOWN     &kp RIGHT      &kp PG_UP       &kp PG_UP    &kp LEFT &kp DOWN &kp RIGHT &trans   &sl L_SYSTEM
+&caps_ht CLCK           &trans        &kp LEFT       &kp DOWN     &kp RIGHT      &kp PG_UP       &kp PG_UP    &kp LEFT &kp DOWN &kp RIGHT &trans   &sl L_SYSTEM
 &sys_reset      &trans        &mkp RCLK      &mkp MCLK    &mkp LCLK      &kp PG_DN       &kp PG_DN    &kp RALT &kp RGUI &kp RCTRL &trans   &sys_reset 
                                              &trans       &trans         &trans          &trans       &trans   &trans
                                             // &ht C_VOL_DN C_MUTE   &kp C_VOL_UP
@@ -118,7 +120,31 @@
     };
 
 
+    caps_Word: prog_caps {
+        compatible = "zmk,behavior-caps-word";
+        #binding-cells = <0>;
+        continue-list = <UNDERSCORE>;
+    };
+
+    // Tap for caps_Word, hold for caps lock
+    caps_ht: caps_lock_word_ht {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        tapping-term-ms = <200>;
+        bindings = <&caps_Word>, <&kp>;
+    };
+
+    combos {
+        compatible = "zmk,combos";
+        combo_ctrlshift {
+            timeout-ms = <150>;
+            key-positions = <12 24>;
+            bindings = <&kp LC(LSHIFT)>;
+        };
+    };
+
     macros {
+
         newline_after: newline_after {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -196,6 +222,23 @@
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&none>, <&kp LC(HOME)>;
+        };
+
+        // Modify gresc to just use right shift for tilde, alt for grave, rgui for gui+grave.
+        gresc: grave_escape {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp ESC>, <&kp GRAVE>;
+            mods = <(MOD_RSFT|MOD_RALT|MOD_RGUI)>;
+            keep-mods = <(MOD_RSFT|MOD_RGUI)>;
+        };
+
+
+        del_bspc: shift_del_bspc {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp DEL>, <&kp BSPC>;
+            mods = <(MOD_RSFT)>;
         };
     };
 };
