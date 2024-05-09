@@ -74,7 +74,7 @@
             bindings = <
 // &trans          &to L_QWERTY  &to L_COLEMAK  &trans         &trans         &kp SLEP        &bootloader  &trans  &trans  &trans  &kp PSCRN  &sys_reset
 &kp ESC         &trans        &kp HOME       &kp UP       &kp END        &bootloader     &bootloader  &kp HOME &kp UP   &kp END  &trans    &tog L_SPECIAL
-&caps_ht CLCK           &trans        &kp LEFT       &kp DOWN     &kp RIGHT      &kp PG_UP       &kp PG_UP    &kp LEFT &kp DOWN &kp RIGHT &trans   &sl L_SYSTEM
+&kp CLCK   &trans        &kp LEFT       &kp DOWN     &kp RIGHT      &kp PG_UP       &kp PG_UP    &kp LEFT &kp DOWN &kp RIGHT &trans   &sl L_SYSTEM
 &sys_reset      &trans        &mkp RCLK      &mkp MCLK    &mkp LCLK      &kp PG_DN       &kp PG_DN    &kp RALT &kp RGUI &kp RCTRL &trans   &sys_reset 
                                              &trans       &trans         &trans          &trans       &trans   &trans
                                             // &ht C_VOL_DN C_MUTE   &kp C_VOL_UP
@@ -85,8 +85,8 @@
         l_system {
             bindings = <
 &out OUT_BLE &to L_QWERTY  &to L_COLEMAK &trans         &trans        &bootloader      &bootloader    &trans &trans &trans &trans  &trans
-&out OUT_TOG &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2   &bt BT_SEL 3  &bt BT_SEL 4     &trans         &trans &trans &trans &trans  &trans
-&out OUT_USB &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2  &bt BT_DISC 3 &bt BT_DISC 4    &bt BT_CLR_ALL &trans &trans &trans &trans  &bt BT_CLR
+&out OUT_TOG &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2   &bt BT_SEL 3  &bt BT_SEL 4     &trans         &bt BT_SEL 5  &bt BT_SEL 6  &bt BT_SEL 7  &trans  &trans
+&out OUT_USB &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2  &bt BT_DISC 3 &bt BT_DISC 4    &bt BT_CLR_ALL &bt BT_DISC 5 &bt BT_DISC 6 &bt BT_DISC 7 &trans  &bt BT_CLR
                                          &trans         &trans        &trans           &trans         &trans &trans
             >;
         };
