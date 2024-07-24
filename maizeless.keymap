@@ -53,10 +53,10 @@
         l_nums {
             bindings = <
 // &kp GRAVE &kp F1    &kp F2    &kp F3     &kp F4 &kp F5         &kp F6   &kp F7   &kp F8   &kp F9    &kp F10   &kp F11
-&kp ESC   &kp GRAVE &kp GRAVE &sl L_FUNC &trans &trans   &tog L_NUMS   &kp BSLH &kp BSLH    &kp MINUS &kp EQUAL &kp MINUS 
-&trans    &kp N1    &kp N2    &kp N3     &kp N4 &kp N5   &kp N6        &kp N7   &kp N8      &kp N9    &kp N0    &trans
-&kp LCTRL &kp LGUI  &kp LALT  &trans     &trans &trans   &kp RALT      &kp RGUI &kp COMMA   &kp DOT   &kp SLASH &kp RCTRL
-                                &trans   &trans &trans   &trans        &trans   &trans
+&kp ESC   &kp GRAVE &kp GRAVE &sl L_FUNC &trans &trans     &tog L_NUMS &kp BSLH &kp BSLH    &kp MINUS &kp EQUAL &kp MINUS 
+&trans    &kp N1    &kp N2    &kp N3     &kp N4 &kp N5     &kp N6      &kp N7   &kp N8      &kp N9    &kp N0    &trans
+&kp LCTRL &kp LGUI  &kp LALT  &trans     &trans &trans     &kp RALT    &trans   &kp COMMA   &kp DOT   &kp SLASH &kp RCTRL
+                                &trans   &trans &trans     &trans      &trans   &trans
             >;
         };
 
@@ -204,13 +204,14 @@
         hrm: home_row_mods {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <200>;
+            flavor = "balanced";
+            tapping-term-ms = <180>;
             quick-tap-ms = <200>;
-            require-prior-idle-ms = <165>;
+            require-prior-idle-ms = <145>;
             bindings = <&kp>, <&kp>;
-            // Trigger instantly for tab, escape thumb key (esp useful for esc_gr)
-            hold-trigger-key-positions = <0 36>;
+            // Trigger instantly for tab, escape thumb key (esp useful for esc_gr), shifts/brackets
+            hold-trigger-key-positions = <0 36 24 35>;
+            hold-trigger-on-release;
         };
 
         lt: layer_tap {
@@ -219,7 +220,7 @@
             flavor = "tap-preferred";
             tapping-term-ms = <160>;
             quick-tap-ms = <200>;
-            require-prior-idle-ms = <165>;
+            require-prior-idle-ms = <145>;
             // bindinggs = <&kp>, <&mo>;
         };
 
