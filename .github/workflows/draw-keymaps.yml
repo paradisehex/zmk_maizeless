@@ -14,8 +14,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Make keymap_drawer.yml
-        run: make keymap_drawer.yml
+      - name: Make keymap_drawer.yaml
+        run: make keymap_drawer.yaml
   draw:
     uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
     permissions:
