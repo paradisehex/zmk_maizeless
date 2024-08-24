@@ -4,6 +4,7 @@
 
 This repo contains ZMK configuration for the [Maizeless keyboard](https://github.com/BlueDrink9/maizeless) hardware.
 It contains my personal keymap layout, but can be forked to make it your own (and it defaults to the Corne layout when not customised/no `.keymap`).
+To modify it, make changes to `maizeless.keymap`.
 
 These steps will get you using your keymap on your keyboard in the fastest time possible.
 It uses the GitHub Actions feature to build your firmware online, rather than setting up the tool chain on your local computer.
@@ -31,3 +32,14 @@ If you are looking to dig deeper into ZMK and develop new functionality, it is r
  7. Flash the firmware to your keyboard by double-tapping/quickly double bridging the reset pads, e.g. by touching them with a key, to put the it in bootloader mode (the red LED should blink then go solid). This will set the board up as a disk for your computer to mount. A file explorer window should pop up showing the contents of the storage on the keyboard. Drag and drop the correct .uf2 file into the window. When the upload is complete the window will close and the keyboard will exit bootloader mode.
 
  Your keyboard is now ready to use.
+
+## Layout drawings
+SVGs that draw the layout are also created as part of the Github actions.
+Find the artifacts at the bottom of the drawing workflow.
+
+## Local build and creating a layout drawing
+
+The makefile contains flashing and building shortcuts, if you choose to do local builds.
+However, most people will find it more useful for the `make draw` option. This will create an svg and pdf drawing of the keyboard layout using [keymap-drawer](https://github.com/caksoylar/keymap-drawer) (which must be installed and on PATH for the makefile option to work).
+You also need inkscape installed to convert the svg to the output pdf.
+

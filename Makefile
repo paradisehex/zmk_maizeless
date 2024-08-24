@@ -1,9 +1,12 @@
+# Clone zmk to here
 zmk_src_dir=$(HOME)/src/zmk
+# Clone external modules into here first
+external_modules_list := "$(zmk_src_dir)/modules/zmk-num-word"
 board=nice_nano_v2
 shield=maizeless
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 mkfile_dir := $(dir $(mkfile_path))
-external_modules_list := "$(zmk_src_dir)/modules/zmk-num-word"
+config_dir = $(mkfile_dir)/config
 EMPTY :=
 SPACE := $(EMPTY) $(EMPTY)
 COMMA := ,
@@ -25,7 +28,7 @@ endef
 # $(3) = extra west arg
 define west_build_main
 	$(call west_build,-d,build/$(1),-b,$(board),$(2),$(3),--,\
-		-DSHIELD=$(shield)_$(1),-DZMK_CONFIG="$(mkfile_dir)",-DZMK_EXTRA_MODULES=$(external_modules))
+		-DSHIELD=$(shield)_$(1),-DZMK_CONFIG="$(config_dir)",-DZMK_EXTRA_MODULES=$(external_modules))
 endef
 
 define west_build_simple
@@ -64,7 +67,7 @@ draw: $(layer_drawing)
 
 $(layer_drawing): keymap_drawer.yaml
 	keymap draw --qmk-keyboard corne_rotated $< >| $@.svg
-	inkscape --export-pdf=$@ $@.svg
+	if command -v inkscape; then inkscape --export-pdf=$@ $@.svg; fi
 
 keymap_drawer.yaml: config/maizeless.keymap
 	keymap parse -c 10 -z $< >| $@
