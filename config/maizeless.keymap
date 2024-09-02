@@ -39,15 +39,6 @@
             >;
         };
 
-        l_nums {
-            bindings = <
-&gresc     &kp BANG  &kp AT   &kp HASH   &kp DLLR   &kp PRCNT         &kp CRRT   &kp AMPS   &kp ASTRK   &kp LPAR   &kp RPAR       &kp EQUAL
-&kp DEL    &kp N1    &kp N2   &kp N3     &kp N4     &kp N5            &kp N6     &kp N7     &kp N8      &kp N9     &kp N0         &kp BACKSLASH
-&sl L_FUNC &trans    &trans   &trans     &trans     &trans            &trans     &trans     &trans      &trans     &sl L_SPECIAL  &trans
-           &kp LCTRL          &kp LGUI              &kp LALT          &trans     &kp RET    &kp RSHIFT
-            >;
-        };
-
         l_colemak {
             bindings = <
 // &kp GRAVE  &kp N1  &kp N2  &kp N3  &kp N4  &lt L_SPECIAL N5        &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &lt L_SPECIAL EQUAL
@@ -57,6 +48,16 @@
                             &trans           &trans      &trans    &trans &trans      &trans  
             >;
         };
+
+        l_nums {
+            bindings = <
+&gresc     &kp BANG  &kp AT   &kp HASH   &kp DLLR   &kp PRCNT         &kp CRRT   &kp AMPS   &kp ASTRK   &kp LPAR   &kp RPAR       &kp EQUAL
+&kp DEL    &kp N1    &kp N2   &kp N3     &kp N4     &kp N5            &kp N6     &kp N7     &kp N8      &kp N9     &kp N0         &kp BACKSLASH
+&sl L_FUNC &trans    &trans   &trans     &trans     &trans            &trans     &trans     &trans      &trans     &sl L_SPECIAL  &trans
+           &kp LCTRL          &kp LGUI              &kp LALT          &trans     &kp RET    &kp RSHIFT
+            >;
+        };
+
 
         l_func {
             bindings = <
