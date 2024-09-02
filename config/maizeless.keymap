@@ -32,11 +32,19 @@
 
         l_qwerty {
             bindings = <
-// &kp GRAVE  &kp N1  &kp N2  &kp N3  &kp N4  &lt L_SPECIAL N5        &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &lt L_SPECIAL EQUAL
-&kp TAB         &kp Q        &kp W         &lt L_SPECIAL E  &kp R       &kp T          &kp Y   &kp U       &lt L_SPECIAL I &kp O           &kp P            &kp MINUS
-&kp BSPC        &kp A        &hrm LCTRL S  &hrm LGUI D      &hrm LALT F &kp G          &kp H   &hrm RALT J &hrm RGUI K     &hrm RCTRL L    &kp SEMI         &kp APOS
-&mt LSHFT LBKT  &hrm LCTRL Z &lt L_NUMS X  &kp C            &lt L_VIM V &hrm LALT B    &kp N   &lt L_VIM M &kp COMMA       &lt L_NUMS DOT  &hrm RCTRL SLASH &mt RSHFT RBKT
-                                           &gresc           &kp SPACE   &del_bspc         &num_word  &kp RSHFT   &kp RET
+&kp TAB    &kp Q    &kp W   &kp E   &kp R   &kp T            &kp Y   &kp U   &kp I       &kp O     &kp P       &kp MINUS
+&del_bspc  &kp A    &kp S   &kp D   &kp F   &kp G            &kp H   &kp J   &kp K       &kp L     &kp SEMI    &kp APOS
+&kp LBKT   &kp Z    &kp X   &kp C   &kp V   &kp B            &kp N   &kp M   &kp COMMA   &kp DOT   &kp SLASH   &kp RBKT
+           &kp LCTRL        &kp LGUI       &kp LALT          &num_word       &kp SPACE             &kp RSHIFT
+            >;
+        };
+
+        l_nums {
+            bindings = <
+&gresc     &kp BANG  &kp AT   &kp HASH   &kp DLLR   &kp PRCNT         &kp CRRT   &kp AMPS   &kp ASTRK   &kp LPAR   &kp RPAR       &kp EQUAL
+&kp DEL    &kp N1    &kp N2   &kp N3     &kp N4     &kp N5            &kp N6     &kp N7     &kp N8      &kp N9     &kp N0         &kp BACKSLASH
+&sl L_FUNC &trans    &trans   &trans     &trans     &trans            &trans     &trans     &trans      &trans     &sl R_SPECIAL  &trans
+           &kp LCTRL          &kp LGUI              &kp LALT          &trans     &kp RET    &kp RSHIFT
             >;
         };
 
@@ -47,16 +55,6 @@
 &trans  &kp A  &hrm LCTRL R &hrm LGUI S      &hrm LALT T &kp D     &kp H  &hrm RALT N &hrm RGUI E     &hrm RCTRL I &kp O     &trans
 &trans  &trans &trans       &trans           &trans      &trans    &kp K  &trans      &trans          &trans       &trans    &trans
                             &trans           &trans      &trans    &trans &trans      &trans  
-            >;
-        };
-
-        l_nums {
-            bindings = <
-// &kp GRAVE &kp F1    &kp F2    &kp F3     &kp F4 &kp F5         &kp F6   &kp F7   &kp F8   &kp F9    &kp F10   &kp F11
-&kp ESC   &kp GRAVE &kp GRAVE &sl L_FUNC &trans &trans     &tog L_NUMS &kp BSLH &kp BSLH    &kp MINUS &kp EQUAL &kp MINUS 
-&trans    &kp N1    &kp N2    &kp N3     &kp N4 &kp N5     &kp N6      &kp N7   &kp N8      &kp N9    &kp N0    &trans
-&kp LCTRL &kp LGUI  &kp LALT  &trans     &trans &trans     &kp RALT    &trans   &kp COMMA   &kp DOT   &kp SLASH &kp RCTRL
-                                &trans   &trans &trans     &trans      &trans   &trans
             >;
         };
 
